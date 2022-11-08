@@ -78,7 +78,7 @@ module.exports = {
         })
         .then((userData) => {
           if (!userData) {
-            return res.status(404).json({ message: 'Thought was created but no user exists with this id!' });
+            return res.status(404).json({ message: 'Thought was deleted but no user exists with this id!' });
           }
           res.json({ message: 'Thought was deleted!' });
         })

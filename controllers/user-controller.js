@@ -63,14 +63,51 @@ module.exports = {
                 if (!userData) {
                     res.status(404).json({ message: 'There is no user associated with this ID'})
                 }
-                //TODO: BONUS TO DELETE USER THOUGHTS AS WELL
-                res.status(200).json(userData)
+                //BONUS TO DELETE USER THOUGHTS AS WELL
+                return Thought.deleteMany({ _id: { $in: userData.thoughts}})
+
+                .then(() => {
+                    res.status(200).json({ message: "This user and their thoughts have been deleted"})
+                })
             })
             .catch((err) => {
                 console.log(err)
                 res.status(500).json(err)
             });
     },
-
-    //TODO: BONUS TO ADD FRIEND AND REMOVE FRIEND
+    //BONUS TO ADD AND DELETE FRIENDS
+    addFriend(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.id }, 
+            { $addToSet: { friends: req.params.friendId } }, 
+            { new: true }
+        )
+            .then((userData) => {
+            if (!userData) {
+                return res.status(404).json({ message: 'No user associated with this id!' });
+            }
+            res.json(userData);
+            })
+            .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+            });
+    },
+    deleteFriend(req, res) {
+        User.findOneAndUpdate(
+            { _id: req.params.id }, 
+            { $pull: { friends: req.params.friendId } }, 
+            { new: true }
+        )
+            .then((userData) => {
+            if (!userData) {
+                return res.status(404).json({ message: 'No user associated with this id!' });
+            }
+            res.json(userData);
+            })
+            .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+            });
+    },
 }
