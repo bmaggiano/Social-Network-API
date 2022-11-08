@@ -13,7 +13,7 @@ module.exports = {
     },
     getSingleUser(req, res) {
         User.findOne({
-            _id: req.params.userId
+            _id: req.params.id
         })
         .populate('thoughts')
         .populate('friends')
@@ -40,7 +40,7 @@ module.exports = {
     },
     updateUser(req, res) {
         User.findOneAndUpdate(
-            { _id: req.params.userId },
+            { _id: req.params.id },
             { $set: req.body },
             { runValidators: true, new: true },
         )
@@ -57,7 +57,7 @@ module.exports = {
     },
     deleteUser(req, res) {
         User.findOneAndDelete(
-            { _id: req.params.userId }
+            { _id: req.params.id }
         )
             .then((userData) => {
                 if (!userData) {

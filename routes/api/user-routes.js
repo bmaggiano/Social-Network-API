@@ -1,11 +1,17 @@
 const router = require('express').Router();
 
-//need to require all functions from controllers
+const {
+    getUsers,
+    getSingleUser,
+    createUser,
+    updateUser,
+    deleteUser,
+} = require('../../controllers/user-controller')
 
-//need a get route for all users
+router.route('/').get(getUsers).post(createUser)
 
-//need a get route for a single user by it's _id and populated thought and friend data
+router.route('/:id').get(getSingleUser).put(updateUser).delete(deleteUser)
 
-//need a post route for a new user
+//TODO: BONUS FOR ADD FRIEND AND REMOVE FRIEND
 
 module.exports = router;
