@@ -12,7 +12,9 @@ To install the dependencies inside of our package.json file, use npm i. Then to 
 
 ## Usage/Videos
 
+[18-all-get-routes.webm](https://user-images.githubusercontent.com/103971233/200712694-9c3a9478-76bb-49d2-9ab3-7405986e3a49.webm)
 
+This video shows a basic walkthrough of the data presented when a user 'signs up', makes 'thoughts', 'reacts' to others posts, and their friends list.
 
 ## Credits
 
