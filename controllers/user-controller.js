@@ -75,7 +75,6 @@ module.exports = {
                 res.status(500).json(err)
             });
     },
-    //BONUS TO ADD AND DELETE FRIENDS
     addFriend(req, res) {
         User.findOneAndUpdate(
             { _id: req.params.id }, 
